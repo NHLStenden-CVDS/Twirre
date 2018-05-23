@@ -1,9 +1,8 @@
 ---
+---
 
 # Notice
 This page is currently being developed. Expect changes and additional information in the coming weeks.
-
----
 
 ![Twirre test platform, 2017][twirre_header]
 
