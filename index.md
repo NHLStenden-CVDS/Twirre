@@ -44,12 +44,12 @@ Repository: <https://github.com/NHLStenden-CVDS/TwirreArduino>
 ### TwirreLogReader
 A quick-and-dirty Python file for parsing TwirreLink logs.
 
-Repository: TBA
+Repository: <https://github.com/NHLStenden-CVDS/TwirreLogreader>
 
 ### Additional sensor / actuator libraries
-Some additional TwirreLink-compatible libraries have been written for communication with specific sensors. 
+Some additional TwirreLink-compatible libraries have been written for communication with specific sensors. These are currently bundled in a single repository.
 
-Repository: TBA
+Repository: <https://github.com/NHLStenden-CVDS/TwirreLinkAddons>
  
 
 # Hardware components
