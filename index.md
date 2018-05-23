@@ -1,6 +1,8 @@
 ---
 ---
 
+![Organisation logo][nhlstenden_cvds_logo]
+
 # Notice
 This page is currently being developed. Expect changes and additional information in the coming weeks.
 
@@ -67,6 +69,5 @@ TBA: Info about the NHL Stenden University of Applied Sciences - Centre of Exper
 
 
 
-
+[nhlstenden_cvds_logo]: images/index/nhlstenden_cvds.png
 [twirre_header]: images/index/twirre_header.jpg
-
