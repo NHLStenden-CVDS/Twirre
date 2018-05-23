@@ -1,37 +1,47 @@
-## Welcome to GitHub Pages
+# Twirre - an architecture for autonomous vehicles
 
-You can use the [editor on GitHub](https://github.com/NHLStenden-CVDS/Twirre/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+---
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+# Notice
+This page is currently being developed. Expect changes and additional information in the coming weeks.
 
-### Markdown
+---
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+![Twirre test platform, 2017][twirre_header]
 
-```markdown
-Syntax highlighted code block
+## Introduction
+TBA
 
-# Header 1
-## Header 2
-### Header 3
+## Contents
 
-- Bulleted
-- List
+* [Architecture overview](#architecture-overview)
+* [Software components](#software-components)
+* [Hardware components](#hardware-components)
+* [Licensing](#licensing)
+* [Demo pictures and videos](#demo-pictures-and-videos)
+* [About us](#about-us)
 
-1. Numbered
-2. List
+## Architecture overview
+TBA
 
-**Bold** and _Italic_ and `Code` text
+## Software components
+TBA
 
-[Link](url) and ![Image](src)
-```
+## Hardware components
+TBA
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+## Licensing
+MIT license applies to all Twirre software and hardware schematics
 
-### Jekyll Themes
+## Demo pictures and videos
+TBA
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/NHLStenden-CVDS/Twirre/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+## About us
+TBA: Info about the NHL Stenden University of Applied Sciences - Centre of Expertise in Computer Vision & Data Science
 
-### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+
+
+
+[twirre_header]: images/index/twirre_header.jpg
+
