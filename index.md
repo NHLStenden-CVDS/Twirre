@@ -1,5 +1,3 @@
-# Twirre - an architecture for autonomous vehicles
-
 ---
 
 # Notice
