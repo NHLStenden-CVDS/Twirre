@@ -4,9 +4,27 @@
 ![Organisation logo][nhlstenden_cvds_logo]
 
 # Notice
-This page is currently being developed. Expect changes and additional information in the coming weeks. All text must be considered to be concept text only.
+This page is currently being developed. Expect changes and additional information in the coming weeks. **All text must be considered to be concept text only.**
 
 ![Twirre test platform, 2017][twirre_header]
+
+# Summary
+
+Twirre is a flexible architecture for autonomous vehicles using low-cost and interchangeable commodity components. Its initial development platform has been a drone, but the architecture is also suitable for other types of vehicles such as (model)boats and ground vehicles. Several software components have been developed for Twirre, including TwirreLink, a sensor/actuator communication library, and TwirreArduino, which allows an Arduino DUE to be used for sensor/actuator communication. TwirreArduino can also communicate with an instance of TwirreLink running on a main computer through USB. These software components can be used on Windows and Linux (tested on Ubuntu), and have been used on both x86-AMD64 based computers and ARMv7- or ARM64-based computers. 
+
+Twirre also encompasses a generic hardware architecture. Reference hardware for the current testing platform will also be detailed. Finally, a PCB design with components list is provided for a 'shield' for the Arduino DUE, which provides a cleaner way of connecting various sensors to the microcontroller.
+
+Twirre has been designed and developed by the Leeuwarden (the Netherlands)  - based [NHL Stenden University of Applied Sciences][nhlstenden-site]'s [Centre of Expertise in Computer Vision & Data Science][cvds-official-site]. The software is provided under MIT license, and can thus be used easily in both open-source and commercial projects. It is kindly requested to share any useful modifications and additions to Twirre software, for the benefit of all who are (planning to) use this software.
+
+# Contents
+
+* [Introduction](#introduction)
+* [Architecture overview](#architecture-overview)
+* [Software components](#software-components)
+* [Hardware components](#hardware-components)
+* [Licensing](#licensing)
+* [Demo pictures and videos](#demo-pictures-and-videos)
+* [About us](#about-us)
 
 # Introduction
 In recent years, the usage of drones (or, more generally, Remotely Piloted Aircraft Systems ('RPAS')) has been massively expanding. Increasingly affordable and capable small multirotor aircraft have become available. For the field of computer vision, this provides a new way of collecting image data from the air. Drones can for example be used to collect detailed, high-resolution data of agricultural fields for advanced crop health analysis. However, the distance between pilot and aircraft, together with inherent limits of human pilots, presents a limit on the usability of drones for detailed inspection. 
@@ -27,16 +45,6 @@ This makes it more difficult to correct for errors in the autonomous control (es
 
 In order to facilitate experiments for more advanced autonomous flight, the NHL Stenden Centre of Expertise in Computer Vision & Data Science has decided a couple of years ago to develop a flexible architecture for autonomous mini-UAVs using interchangeable commodity components: the Twirre architecture. Development started as a small in-house project mainly by internship students, but it has since scaled up to subsidised commercial proof-of-concept projects. During development it was also realised that the Twirre architecture is not limited to UAVs, but can also easily be adapted for other types of vehicles. Subsequently, a project for development of an autonomous model boat has also been started.
 
-
-
-# Contents
-
-* [Architecture overview](#architecture-overview)
-* [Software components](#software-components)
-* [Hardware components](#hardware-components)
-* [Licensing](#licensing)
-* [Demo pictures and videos](#demo-pictures-and-videos)
-* [About us](#about-us)
 
 # Architecture overview
 TBA
@@ -89,3 +97,6 @@ TBA: Info about the NHL Stenden University of Applied Sciences - Centre of Exper
 
 [nhlstenden_cvds_logo]: images/index/nhlstenden_cvds.png
 [twirre_header]: images/index/twirre_header.jpg
+
+[nhlstenden-site]: https://www.nhlstenden.com/en
+[cvds-official-site]: https://onderzoek.nhl.nl/en/lectorships/computer-vision
