@@ -4,12 +4,30 @@
 ![Organisation logo][nhlstenden_cvds_logo]
 
 # Notice
-This page is currently being developed. Expect changes and additional information in the coming weeks.
+This page is currently being developed. Expect changes and additional information in the coming weeks. All text must be considered to be concept text only.
 
 ![Twirre test platform, 2017][twirre_header]
 
 # Introduction
-TBA
+In recent years, the usage of drones (or, more generally, Remotely Piloted Aircraft Systems ('RPAS')) has been massively expanding. Increasingly affordable and capable small multirotor aircraft have become available. For the field of computer vision, this provides a new way of collecting image data from the air. Drones can for example be used to collect detailed, high-resolution data of agricultural fields for advanced crop health analysis. However, the distance between pilot and aircraft, together with inherent limits of human pilots, presents a limit on the usability of drones for detailed inspection. 
+
+For example, inspection of windmill turbine blades for damage requires very high resolution images, which can only be taken from a short distance. This is currently done by an inspector climbing the windmill and manually taking pictures of potential problems using a high-end handheld photo camera. Performing such an inspection using a drone would be much safer and more cost-effective. Some attempts have been made to do this with standard RPAS systems with a DSLR camera attached, but the image quality achieved in that way is generally insufficient due to the pilot not being able to safely fly close enough to the windmill blade. For these kinds of missions, an autonomous drone would be required. That way, the drone can automatically fly at the required distance using distance information from for example depth camera, ultrasonic, or (2D/3D) LiDAR sensors. The drone could perhaps also automatically trace the edges of the windmill blade, ensuring the full surface is captured on camera.
+
+So far, some basic forms of autonomy in drones have become available commercially. This includes, for example, automatic GPS waypoint flight, basic collision avoidance, and target/POI following. For the type of missions described above these are insufficient. Also, that functionality is typically deeply integrated into commercial drones or components, and cannot be adjusted, modified or extended for more advanced purposes.
+
+Some more advanced experiments/research/projects have been published with regards to autonomous control of drones. However, these generally present some other issues:
+
+* #### Autonomous functionality is often directly integrated into the low-level flight controller
+This makes it more difficult to correct for errors in the autonomous control (especially software bugs causing crash of the flight controller). Also, such functionality is poorly transferable to different models of flight controllers, such as improved models, different drone models, or other types of vehicles.
+
+* #### Relying on external equipment
+   A lot of very impressive demos have been made in specially-equipped rooms with for example an array of cameras attached to the ceiling, allowing fast and accurate determination of the drone's position and orientation. Although this provides a fairly easy solution to one of the bigger problems of autonomous flight, it means the vehicle cannot easily be used in new locations and severely limits its practical applications.
+
+   Similarly, a remote computer is sometimes used to perform the required sensor processing and control logic. This allows a more powerful computer to be used, but also presents limitations due to the required wireless communication link, with limited bandwidth, increased latency, and packet loss or even complete loss-of-link. It also somewhat complicates transportation and deployment of the complete system, increasing mission cost. As such, an on-board computer would be preferrable.
+
+In order to facilitate experiments for more advanced autonomous flight, the NHL Stenden Centre of Expertise in Computer Vision & Data Science has decided a couple of years ago to develop a flexible architecture for autonomous mini-UAVs using interchangeable commodity components: the Twirre architecture. Development started as a small in-house project mainly by internship students, but it has since scaled up to subsidised commercial proof-of-concept projects. During development it was also realised that the Twirre architecture is not limited to UAVs, but can also easily be adapted for other types of vehicles. Subsequently, a project for development of an autonomous model boat has also been started.
+
+
 
 # Contents
 
@@ -29,7 +47,7 @@ Several software components have been created for use with the Twirre architectu
 * [TwirreLink](#twirrelink)
 * [TwirreArduino](#twirrearduino)
 * [TwirreLogReader](#twirrelogreader)
-* [Additional sensor libraries](#additional-sensor-libraries)
+* [Additional sensor libraries](#additional-sensor--actuator-libraries)
 
 This page will only give a short summary for these components. Please check the corresponding repositories for more detailed information.
 
