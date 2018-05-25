@@ -81,7 +81,20 @@ Repository: <https://github.com/NHLStenden-CVDS/TwirreLinkAddons>
  
 
 # Hardware components
+
+* [UAV test platform hardware info](#uav-test-platform-hardware-info)
+* [twirreshield](#twirreshield)
+
+### UAV test platform hardware info
+
 TBA
+
+
+### TwirreShield
+Design for a sensor/actuator interface shield for the Arduino DUE.
+
+Repository: <https://github.com/NHLStenden-CVDS/TwirreShield>
+
 
 # Licensing
 MIT license applies to all Twirre software and hardware schematics
