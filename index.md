@@ -143,7 +143,10 @@ MIT license applies to all Twirre software and hardware schematics
 **More TBA**
 
 # About us
-TBA: Info about the NHL Stenden University of Applied Sciences - Centre of Expertise in Computer Vision & Data Science
+
+<http://www.nhlcomputervision.nl/>
+
+TBA: Some more info about the NHL Stenden University of Applied Sciences - Centre of Expertise in Computer Vision & Data Science
 
 
 
