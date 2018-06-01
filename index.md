@@ -128,7 +128,13 @@ Repository: <https://github.com/NHLStenden-CVDS/TwirreShield>
 MIT license applies to all Twirre software and hardware schematics
 
 # Demo pictures and videos
-TBA
+
+### Pointerdemo
+<p align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/gK4VH7v_jYc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></p>
+
+(July 2017) A demonstration application which was used to prove the Twirre v2 architecture software and demonstrate full autonomous flight. The drone will try to fly at a fixed distance from a 'pointer', which is a stick fitted with two different-sized coloured spheres. The spheres allow the drone to calculate a full position solution. 
+
+**More TBA**
 
 # About us
 TBA: Info about the NHL Stenden University of Applied Sciences - Centre of Expertise in Computer Vision & Data Science
