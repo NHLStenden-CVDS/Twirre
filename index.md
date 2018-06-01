@@ -48,6 +48,12 @@ In order to facilitate experiments for more advanced autonomous flight, the NHL 
 
 # Architecture overview
 
+Initial concept, design and enhancement is also detailed in two publications:
+
+* [Loosdrecht, J. van de, Dijkstra, K., Postma J. H., Keuning W., Bruin D., 2014. Twirre: Architecture for autonomous mini-UAVs using interchangeable commodity components, International Micro Air Vehicle Conference and Competition (IMAV 2014), August 12-15 2014.][paper-IMAV2014]
+* [Boer, J. de, Junyent Barbany, M, Dijkstra, M.R., Dijkstra, K, Loosdrecht, J. van de, 2015. Twirre V2: Evolution of an architecture for automated mini-UAVs using interchangeable commodity components, International Micro Air Vehicle Conference and Competition (IMAV 2015), September 15-18 2015.][paper-IMAV2015]
+
+
 The Twirre architecture was designed with a few goals in mind:
 
 * All sensors and processing must be on-board the vehicle
@@ -150,3 +156,6 @@ TBA: Info about the NHL Stenden University of Applied Sciences - Centre of Exper
 
 [nhlstenden-site]: https://www.nhlstenden.com/en
 [cvds-official-site]: https://onderzoek.nhl.nl/en/lectorships/computer-vision
+
+[paper-IMAV2014]: http://www.nhlcomputervision.nl/wp-content/uploads/Twirre_IMAV2014.pdf
+[paper-IMAV2015]: http://www.nhlcomputervision.nl/wp-content/uploads/3_Jasper-de-Boer.pdf
