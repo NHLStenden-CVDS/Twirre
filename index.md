@@ -140,6 +140,11 @@ MIT license applies to all Twirre software and hardware schematics
 
 (July 2017) A demonstration application which was used to prove the Twirre v2 architecture software and demonstrate full autonomous flight. The drone will try to fly at a fixed distance from a 'pointer', which is a stick fitted with two different-sized coloured spheres. The spheres allow the drone to calculate a full position solution. 
 
+### Windmill blade approach
+<p align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/dHwQGHlhG78" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></p>
+
+(January 2018) A demo of autonomous windmill blade inspection. The demo is performed indoors (as development is currently more practical there), using a black wooden model of a windmill blade. The drone will search for the blade by slowly rotating, and will then approach the blade and keep flying at a fixed distance. After a certain amount of time the drone switches to landing. Throttle, pitch, and yaw are controlled autonomously, but roll is controlled manually, as the vision processing does not give enough information about sideways position relative to the blade. 
+
 **More TBA**
 
 # About us
