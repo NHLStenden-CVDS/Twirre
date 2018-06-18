@@ -118,10 +118,57 @@ Repository: <https://github.com/NHLStenden-CVDS/TwirreLinkAddons>
 
 * [UAV test platform hardware info](#uav-test-platform-hardware-info)
 * [twirreshield](#twirreshield)
+* [custom parts for F550 frame](#custom-parts-for-f550-frame)
 
 ### UAV test platform hardware info
 
-TBA
+The current Twirre testing platform consists of the following hardware:
+
+#### Frame
+The drone frame has been built using a [DJI Flame Wheel F550 ARF kit][platform_F550]. This is an hexacopter frame offering enough room for the additional equipment needed for autonomous flight. The frame has been equipped with a [DJI E310 propulsion system][platform_E310], which offers improved performance and efficiency over the propulsion system which came standard with the F550 kit. This combination can provide around 4.8kg of thrust. The manufacturer recommends a maximum takeoff weight of 2.4kg, to allow sufficient thrust to be used for manoeuvring.
+
+#### 3D-printed parts
+Some parts have been printed using a 3D-printer. This includes an extension for the F550 frame landing legs, and a battery holder. 
+
+#### Flight controller
+The Twirre UAV uses a [DJI NAZA M v2][platform_NAZA] flight controller. This flight controller is suitable for several different engine setups, including the "Hex V" setup of the F550 kit. The NAZA M v2 supports tradional PWM inputs, as well as S-BUS and PPM inputs. In this case, the traditional PWM inputs have been used, as this makes control signal generation using the Arduino DUE a bit easier. The flight controller also supports a GPS module, which enables a GPS-stabilised flight mode when flying outside, preventing the drone from drifting away due to wind.
+
+The flight controller supports a couple of different flight modes: 'Manual' mode, where all position/attitude assistance features are disabled; 'Atti' mode, which has attitude assistance where the drone auto-levels and maintains its altitude when the sticks are centered; and 'GPS' mode with full attitude and position stabilisation. The Twirre drone operates in 'Atti' mode for indoor tests.
+
+#### Controller / receiver / autonomy switch
+The manual control pipeline is provided by a 2.4GHz [Graupner MX-12 transmitter, paired with a Graupner gR-12 receiver][platform_TXRX], which provides six control channels. These channels are all in use on the Twirre drone: Four channels are used for the roll/pitch/yaw/throttle control signals, one channel for the flight controller flightmode, and one channel for control of the autonomy switch. The autonomy switch is an [ASSAN Dual Receiver Controller][platform_switch], which supports switching up to seven control channels. 
+
+#### Battery
+Twirre is currently powered by a [Multistar 4S 8000mAh LiPo battery][platform_battery], which is a weight-optimised four-cell (14.8v nominal, 16.8v max) lithium-ion polymer battery with a capacity of 8Ah. These batteries have a C-rating of 10/20 (which, due to the emphasis on high specific energy, is a lot lower than some other available battery packs), meaning that they support a continous discharge of 80A with peak discharge up to 160A. At a weight of 703g, this battery pack takes up a significant part of the total weight budget. With the current hardware setup, it allows a flight time of around 20 minutes.
+
+#### Computer
+During development, several computer systems have been used:
+
+* [Odroid U2][platform_odroidU2] (with 16GB eMMC card, and custom active cooling solution)
+* [Odroid XU4][platform_odroidXU4] (with 32GB eMMC card)
+* [Commell LS-37BS][platform_commell]
+
+The Odroid U2 and XU4 are small single-board computers equipped with quadcore ARM-v7 processors (1.7GHz and 2.0GHz, respectively) and two gigabytes of RAM. The XU4 was a significant upgrade over the U2 due to newer processor architecture and faster memory speeds, but eventually the processing power was considered to be insufficient for the vision processing required for autonomous flight. Because of this, Twirre was upgraded to the Commell LS-37BS industrial 3.5" mainboard. The board has been fitted with the following hardware:
+
+* **CPU**: [Intel Core i7-3820QM][platform_corei7] (2.7GHz x86-64 quadcore with hyperthreading and turbo up to 3.7GHz)
+* **RAM**: 4GB DDR3 SO-DIMM module
+* **Storage**: 120GB mSATA SSD module
+* **WiFi**: A 2.4GHz and 5GHz compatible 802.11B/G/N WiFi module with two antennas
+
+The mainboard has its own power regulation on-board, so it can directly be connected to the flight battery. Power draw of the complete computer system should be around 60 watts at full load, which, when compared to the total UAV power draw of up to 700 watts, does not impact flight time significantly.
+
+#### Microcontroller
+An [Arduino DUE][platform_due] is used. This microcontroller provides a large amount of inputs/outputs, with (amongst other things) two i2c buses, SPI bus, serial bus, and various digital and analog IO pins. This allows a large amount of sensors/actuators to be connected. The control signals for the autonomous pipeline are generated using the Due's PWM signal generators. For easier connecting of devices to the Arduino DUE, a [custom shield (TwirreShield)](#twirreshield) has been developed. 
+
+#### Sensors
+The Twirre test platform is equipped with several sensors (which are not always present on the system at all times, sensor setup is flexible depending on requirements):
+
+* [SRF08 ultrasonic range finder][platform_sonar] - a sonar module which is pointed downwards to accurately determine the altitude of the drone. Connected to the 5V-I2C bus on TwirreShield.
+* [LIDAR-Lite v2][platform_lidarlite] - a 1D point lidar which can be used as alternative to the sonar for measuring altitude. Works at much greater distances. Narrow beam means more work is needed to compensate for pitch/roll orientation of the drone. 
+* [myAHRS+][platform_ahrs] - an IMU/AHRS which provides attitude and heading data. Can be connected either to the FAST-I2C bus on TwirreShield, or directly to the host computer using USB.
+* [RPLidar A1][platform_lidar] - a 2D lidar system for detecting walls, objects and obstacles. Connected to the host computer using USB.
+* [IDS UI-1221LE-M-GL][platform_idsof] - low-resolution monochrome industrial board-level camera. Mounted facing down with a suitable 8mm m12 lens, and used for optical flow for positioning purposes (sadly, optical flow could not be implemented reliably as of yet).
+* [IDS UI-1241LE-C-HQ][platform_idscolour] - RGB industrial board level camera. Two are mounted on the Twirre drone: one facing forward for object-of-interest detection, and one facing down for detection of landing site.
 
 
 ### TwirreShield
@@ -129,6 +176,11 @@ Design for a sensor/actuator interface shield for the Arduino DUE.
 
 Repository: <https://github.com/NHLStenden-CVDS/TwirreShield>
 
+
+### Custom parts for F550 frame
+Some custom parts for the F550 frame have been created, and printed out using a 3D printer.
+
+TBA: 3D models for various parts
 
 # Licensing
 MIT license applies to all Twirre software and hardware schematics
@@ -162,8 +214,28 @@ TBA: Some more info about the NHL Stenden University of Applied Sciences - Centr
 [twirre_archdiagram_base]: images/index/twirre_diagram_base.png
 [twirre_archdiagram]: images/index/twirre_diagram.png
 
+
+
 [nhlstenden-site]: https://www.nhlstenden.com/en
 [cvds-official-site]: https://onderzoek.nhl.nl/en/lectorships/computer-vision
 
 [paper-IMAV2014]: http://www.nhlcomputervision.nl/wp-content/uploads/Twirre_IMAV2014.pdf
 [paper-IMAV2015]: http://www.nhlcomputervision.nl/wp-content/uploads/3_Jasper-de-Boer.pdf
+
+[platform_F550]: https://www.dji.com/flame-wheel-arf/feature
+[platform_E310]: https://www.dji.com/e310
+[platform_NAZA]: https://www.dji.com/naza-m-v2/feature
+[platform_TXRX]: https://www.graupner.com/Radio-Control-Set-mx-12-HoTT-GB-6-Channels-und-Receiver-GR-12/33112.EN/
+[platform_switch]: https://hobbyking.com/en_us/wireless-buddy-box-system-8ch-dual-rx-controller.html
+[platform_battery]: https://hobbyking.com/en_us/multistar-high-capacity-4s-8000mah-multi-rotor-lipo-pack.html
+[platform_odroidU2]: https://www.hardkernel.com/main/products/prdt_info.php?g_code=G135341370451
+[platform_odroidXU4]: https://www.hardkernel.com/main/products/prdt_info.php?g_code=G143452239825
+[platform_commell]: http://www.commell.com.tw/Product/SBC/LS-37B.HTM
+[platform_corei7]: https://ark.intel.com/products/64889/Intel-Core-i7-3820QM-Processor-8M-Cache-up-to-3_70-GHz
+[platform_due]: https://www.arduino.cc/en/Guide/ArduinoDue
+[platform_sonar]: https://www.robot-electronics.co.uk/htm/srf08tech.html
+[platform_lidarlite]: https://www.sparkfun.com/products/retired/13680
+[platform_ahrs]: https://github.com/withrobot/myAHRS_plus
+[platform_lidar]: http://www.slamtec.com/en/lidar/a1
+[platform_idsof]: https://en.ids-imaging.com/store/ui-1221le.html
+[platform_idscolour]: https://en.ids-imaging.com/store/ui-1241le.html
