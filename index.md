@@ -14,7 +14,7 @@ Twirre is a flexible architecture for autonomous vehicles using low-cost and int
 
 Twirre also encompasses a generic hardware architecture. Reference hardware for the current testing platform will also be detailed. Finally, a PCB design with components list is provided for a 'shield' for the Arduino DUE, which provides a cleaner way of connecting various sensors to the microcontroller.
 
-Twirre has been designed and developed by the Leeuwarden (the Netherlands)  - based [NHL Stenden University of Applied Sciences][nhlstenden-site]'s [Centre of Expertise in Computer Vision & Data Science][cvds-official-site]. The software is provided under MIT license, and can thus be used easily in both open-source and commercial projects. It is kindly requested to share any useful modifications and additions to Twirre software, for the benefit of all who are (planning to) use this software.
+Twirre has been designed and developed by the Leeuwarden (the Netherlands)  - based [NHL Stenden University of Applied Sciences][nhlstenden-site]{:target="_blank"}'s [Centre of Expertise in Computer Vision & Data Science][cvds-official-site]{:target="_blank"}. The software is provided under MIT license, and can thus be used easily in both open-source and commercial projects. It is kindly requested to share any useful modifications and additions to Twirre software, for the benefit of all who are (planning to) use this software.
 
 # Contents
 
@@ -50,8 +50,8 @@ In order to facilitate experiments for more advanced autonomous flight, the NHL 
 
 Initial concept, design and enhancement is also detailed in two publications:
 
-* [Loosdrecht, J. van de, Dijkstra, K., Postma J. H., Keuning W., Bruin D., 2014. Twirre: Architecture for autonomous mini-UAVs using interchangeable commodity components, International Micro Air Vehicle Conference and Competition (IMAV 2014), August 12-15 2014.][paper-IMAV2014]
-* [Boer, J. de, Junyent Barbany, M, Dijkstra, M.R., Dijkstra, K, Loosdrecht, J. van de, 2015. Twirre V2: Evolution of an architecture for automated mini-UAVs using interchangeable commodity components, International Micro Air Vehicle Conference and Competition (IMAV 2015), September 15-18 2015.][paper-IMAV2015]
+* [Loosdrecht, J. van de, Dijkstra, K., Postma J. H., Keuning W., Bruin D., 2014. Twirre: Architecture for autonomous mini-UAVs using interchangeable commodity components, International Micro Air Vehicle Conference and Competition (IMAV 2014), August 12-15 2014.][paper-IMAV2014]{:target="_blank"}
+* [Boer, J. de, Junyent Barbany, M, Dijkstra, M.R., Dijkstra, K, Loosdrecht, J. van de, 2015. Twirre V2: Evolution of an architecture for automated mini-UAVs using interchangeable commodity components, International Micro Air Vehicle Conference and Competition (IMAV 2015), September 15-18 2015.][paper-IMAV2015]{:target="_blank"}
 
 
 The Twirre architecture was designed with a few goals in mind:
@@ -96,22 +96,22 @@ This page will only give a short summary for these components. Please check the 
 ### TwirreLink
 The TwirreLink library provides a generic sensor / actuator communication API. It is considered to be the core of the Twirre architecture. TwirreLink also contains TwirreSerial, a protocol for communication over serial links, which is used to add sensors and actuators connected to an Arduino DUE to TwirreLink. The library is (mostly) thread-safe, and has a built-in asynchronous logging system.
 
-Repository: <https://github.com/NHLStenden-CVDS/TwirreLink>
+Repository: <https://github.com/NHLStenden-CVDS/TwirreLink>{:target="_blank"}
 
 ### TwirreArduino
 TwirreArduino is an Arduino sketch compatible with the Arduino DUE. It provides communication with several sensors and actuators, and is compatible with the TwirreSerial protocol allowing these devices to be used on the host computer through TwirreLink.
 
-Repository: <https://github.com/NHLStenden-CVDS/TwirreArduino> 
+Repository: <https://github.com/NHLStenden-CVDS/TwirreArduino>{:target="_blank"} 
 
 ### TwirreLogReader
 A quick-and-dirty Python file for parsing TwirreLink logs.
 
-Repository: <https://github.com/NHLStenden-CVDS/TwirreLogreader>
+Repository: <https://github.com/NHLStenden-CVDS/TwirreLogreader>{:target="_blank"}
 
 ### Additional sensor / actuator libraries
 Some additional TwirreLink-compatible libraries have been written for communication with specific sensors. These are currently bundled in a single repository.
 
-Repository: <https://github.com/NHLStenden-CVDS/TwirreLinkAddons>
+Repository: <https://github.com/NHLStenden-CVDS/TwirreLinkAddons>{:target="_blank"}
  
 
 # Hardware components
@@ -125,32 +125,32 @@ Repository: <https://github.com/NHLStenden-CVDS/TwirreLinkAddons>
 The current Twirre testing platform consists of the following hardware:
 
 #### Frame
-The drone frame has been built using a [DJI Flame Wheel F550 ARF kit][platform_F550]. This is an hexacopter frame offering enough room for the additional equipment needed for autonomous flight. The frame has been equipped with a [DJI E310 propulsion system][platform_E310], which offers improved performance and efficiency over the propulsion system which came standard with the F550 kit. This combination can provide around 4.8kg of thrust. The manufacturer recommends a maximum takeoff weight of 2.4kg, to allow sufficient thrust to be used for manoeuvring.
+The drone frame has been built using a [DJI Flame Wheel F550 ARF kit][platform_F550]{:target="_blank"}. This is an hexacopter frame offering enough room for the additional equipment needed for autonomous flight. The frame has been equipped with a [DJI E310 propulsion system][platform_E310]{:target="_blank"}, which offers improved performance and efficiency over the propulsion system which came standard with the F550 kit. This combination can provide around 4.8kg of thrust. The manufacturer recommends a maximum takeoff weight of 2.4kg, to allow sufficient thrust to be used for manoeuvring.
 
 #### 3D-printed parts
 Some parts have been printed using a 3D-printer. This includes an extension for the F550 frame landing legs, and a battery holder. 
 
 #### Flight controller
-The Twirre UAV uses a [DJI NAZA M v2][platform_NAZA] flight controller. This flight controller is suitable for several different engine setups, including the "Hex V" setup of the F550 kit. The NAZA M v2 supports tradional PWM inputs, as well as S-BUS and PPM inputs. In this case, the traditional PWM inputs have been used, as this makes control signal generation using the Arduino DUE a bit easier. The flight controller also supports a GPS module, which enables a GPS-stabilised flight mode when flying outside, preventing the drone from drifting away due to wind.
+The Twirre UAV uses a [DJI NAZA M v2][platform_NAZA]{:target="_blank"} flight controller. This flight controller is suitable for several different engine setups, including the "Hex V" setup of the F550 kit. The NAZA M v2 supports tradional PWM inputs, as well as S-BUS and PPM inputs. In this case, the traditional PWM inputs have been used, as this makes control signal generation using the Arduino DUE a bit easier. The flight controller also supports a GPS module, which enables a GPS-stabilised flight mode when flying outside, preventing the drone from drifting away due to wind.
 
 The flight controller supports a couple of different flight modes: 'Manual' mode, where all position/attitude assistance features are disabled; 'Atti' mode, which has attitude assistance where the drone auto-levels and maintains its altitude when the sticks are centered; and 'GPS' mode with full attitude and position stabilisation. The Twirre drone operates in 'Atti' mode for indoor tests.
 
 #### Controller / receiver / autonomy switch
-The manual control pipeline is provided by a 2.4GHz [Graupner MX-12 transmitter, paired with a Graupner gR-12 receiver][platform_TXRX], which provides six control channels. These channels are all in use on the Twirre drone: Four channels are used for the roll/pitch/yaw/throttle control signals, one channel for the flight controller flightmode, and one channel for control of the autonomy switch. The autonomy switch is an [ASSAN Dual Receiver Controller][platform_switch], which supports switching up to seven control channels. 
+The manual control pipeline is provided by a 2.4GHz [Graupner MX-12 transmitter, paired with a Graupner gR-12 receiver][platform_TXRX]{:target="_blank"}, which provides six control channels. These channels are all in use on the Twirre drone: Four channels are used for the roll/pitch/yaw/throttle control signals, one channel for the flight controller flightmode, and one channel for control of the autonomy switch. The autonomy switch is an [ASSAN Dual Receiver Controller][platform_switch], which supports switching up to seven control channels. 
 
 #### Battery
-Twirre is currently powered by a [Multistar 4S 8000mAh LiPo battery][platform_battery], which is a weight-optimised four-cell (14.8v nominal, 16.8v max) lithium-ion polymer battery with a capacity of 8Ah. These batteries have a C-rating of 10/20 (which, due to the emphasis on high specific energy, is a lot lower than some other available battery packs), meaning that they support a continous discharge of 80A with peak discharge up to 160A. At a weight of 703g, this battery pack takes up a significant part of the total weight budget. With the current hardware setup, it allows a flight time of around 20 minutes.
+Twirre is currently powered by a [Multistar 4S 8000mAh LiPo battery][platform_battery]{:target="_blank"}, which is a weight-optimised four-cell (14.8v nominal, 16.8v max) lithium-ion polymer battery with a capacity of 8Ah. These batteries have a C-rating of 10/20 (which, due to the emphasis on high specific energy, is a lot lower than some other available battery packs), meaning that they support a continous discharge of 80A with peak discharge up to 160A. At a weight of 703g, this battery pack takes up a significant part of the total weight budget. With the current hardware setup, it allows a flight time of around 20 minutes.
 
 #### Computer
 During development, several computer systems have been used:
 
-* [Odroid U2][platform_odroidU2] (with 16GB eMMC card, and custom active cooling solution)
-* [Odroid XU4][platform_odroidXU4] (with 32GB eMMC card)
-* [Commell LS-37BS][platform_commell]
+* [Odroid U2][platform_odroidU2]{:target="_blank"} (with 16GB eMMC card, and custom active cooling solution)
+* [Odroid XU4][platform_odroidXU4]{:target="_blank"} (with 32GB eMMC card)
+* [Commell LS-37BS][platform_commell]{:target="_blank"}
 
 The Odroid U2 and XU4 are small single-board computers equipped with quadcore ARM-v7 processors (1.7GHz and 2.0GHz, respectively) and two gigabytes of RAM. The XU4 was a significant upgrade over the U2 due to newer processor architecture and faster memory speeds, but eventually the processing power was considered to be insufficient for the vision processing required for autonomous flight. Because of this, Twirre was upgraded to the Commell LS-37BS industrial 3.5" mainboard. The board has been fitted with the following hardware:
 
-* **CPU**: [Intel Core i7-3820QM][platform_corei7] (2.7GHz x86-64 quadcore with hyperthreading and turbo up to 3.7GHz)
+* **CPU**: [Intel Core i7-3820QM][platform_corei7]{:target="_blank"} (2.7GHz x86-64 quadcore with hyperthreading and turbo up to 3.7GHz)
 * **RAM**: 4GB DDR3 SO-DIMM module
 * **Storage**: 120GB mSATA SSD module
 * **WiFi**: A 2.4GHz and 5GHz compatible 802.11B/G/N WiFi module with two antennas
@@ -158,17 +158,17 @@ The Odroid U2 and XU4 are small single-board computers equipped with quadcore AR
 The mainboard has its own power regulation on-board, so it can directly be connected to the flight battery. Power draw of the complete computer system should be around 60 watts at full load, which, when compared to the total UAV power draw of up to 700 watts, does not impact flight time significantly.
 
 #### Microcontroller
-An [Arduino DUE][platform_due] is used. This microcontroller provides a large amount of inputs/outputs, with (amongst other things) two i2c buses, SPI bus, serial bus, and various digital and analog IO pins. This allows a large amount of sensors/actuators to be connected. The control signals for the autonomous pipeline are generated using the Due's PWM signal generators. For easier connecting of devices to the Arduino DUE, a [custom shield (TwirreShield)](#twirreshield) has been developed. 
+An [Arduino DUE][platform_due]{:target="_blank"} is used. This microcontroller provides a large amount of inputs/outputs, with (amongst other things) two i2c buses, SPI bus, serial bus, and various digital and analog IO pins. This allows a large amount of sensors/actuators to be connected. The control signals for the autonomous pipeline are generated using the Due's PWM signal generators. For easier connecting of devices to the Arduino DUE, a [custom shield (TwirreShield)](#twirreshield) has been developed. 
 
 #### Sensors
 The Twirre test platform is equipped with several sensors (which are not always present on the system at all times, sensor setup is flexible depending on requirements):
 
-* [SRF08 ultrasonic range finder][platform_sonar] - a sonar module which is pointed downwards to accurately determine the altitude of the drone. Connected to the 5V-I2C bus on TwirreShield.
-* [LIDAR-Lite v2][platform_lidarlite] - a 1D point lidar which can be used as alternative to the sonar for measuring altitude. Works at much greater distances. Narrow beam means more work is needed to compensate for pitch/roll orientation of the drone. 
-* [myAHRS+][platform_ahrs] - an IMU/AHRS which provides attitude and heading data. Can be connected either to the FAST-I2C bus on TwirreShield, or directly to the host computer using USB.
-* [RPLidar A1][platform_lidar] - a 2D lidar system for detecting walls, objects and obstacles. Connected to the host computer using USB.
-* [IDS UI-1221LE-M-GL][platform_idsof] - low-resolution monochrome industrial board-level camera. Mounted facing down with a suitable 8mm m12 lens, and used for optical flow for positioning purposes (sadly, optical flow could not be implemented reliably as of yet).
-* [IDS UI-1241LE-C-HQ][platform_idscolour] - RGB industrial board level camera. Two are mounted on the Twirre drone: one facing forward for object-of-interest detection, and one facing down for detection of landing site.
+* [SRF08 ultrasonic range finder][platform_sonar]{:target="_blank"} - a sonar module which is pointed downwards to accurately determine the altitude of the drone. Connected to the 5V-I2C bus on TwirreShield.
+* [LIDAR-Lite v2][platform_lidarlite]{:target="_blank"} - a 1D point lidar which can be used as alternative to the sonar for measuring altitude. Works at much greater distances. Narrow beam means more work is needed to compensate for pitch/roll orientation of the drone. 
+* [myAHRS+][platform_ahrs]{:target="_blank"} - an IMU/AHRS which provides attitude and heading data. Can be connected either to the FAST-I2C bus on TwirreShield, or directly to the host computer using USB.
+* [RPLidar A1][platform_lidar]{:target="_blank"} - a 2D lidar system for detecting walls, objects and obstacles. Connected to the host computer using USB.
+* [IDS UI-1221LE-M-GL][platform_idsof]{:target="_blank"} - low-resolution monochrome industrial board-level camera. Mounted facing down with a suitable 8mm m12 lens, and used for optical flow for positioning purposes (sadly, optical flow could not be implemented reliably as of yet).
+* [IDS UI-1241LE-C-HQ][platform_idscolour]{:target="_blank"} - RGB industrial board level camera. Two are mounted on the Twirre drone: one facing forward for object-of-interest detection, and one facing down for detection of landing site.
 
 
 ### TwirreShield
@@ -201,7 +201,7 @@ MIT license applies to all Twirre software and hardware schematics
 
 # About us
 
-<http://www.nhlcomputervision.nl/>
+<http://www.nhlcomputervision.nl/>{:target="_blank"}
 
 TBA: Some more info about the NHL Stenden University of Applied Sciences - Centre of Expertise in Computer Vision & Data Science
 
