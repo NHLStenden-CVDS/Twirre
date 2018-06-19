@@ -16,6 +16,8 @@ Twirre also encompasses a generic hardware architecture. Reference hardware for 
 
 Twirre has been designed and developed by the Leeuwarden (the Netherlands)  - based [NHL Stenden University of Applied Sciences][nhlstenden-site]{:target="_blank"}'s [Centre of Expertise in Computer Vision & Data Science][cvds-official-site]{:target="_blank"}. The software is provided under MIT license, and can thus be used easily in both open-source and commercial projects. It is kindly requested to share any useful modifications and additions to Twirre software, for the benefit of all who are (planning to) use this software.
 
+![][vsep_50]
+
 # Contents
 
 * [Introduction](#introduction)
@@ -25,6 +27,10 @@ Twirre has been designed and developed by the Leeuwarden (the Netherlands)  - ba
 * [Licensing](#licensing)
 * [Demo pictures and videos](#demo-pictures-and-videos)
 * [About us](#about-us)
+
+
+![][vsep_50]
+
 
 # Introduction
 In recent years, the usage of drones (or, more generally, Remotely Piloted Aircraft Systems ('RPAS')) has been massively expanding. Increasingly affordable and capable small multirotor aircraft have become available. For the field of computer vision, this provides a new way of collecting image data from the air. Drones can for example be used to collect detailed, high-resolution data of agricultural fields for advanced crop health analysis. However, the distance between pilot and aircraft, together with inherent limits of human pilots, presents a limit on the usability of drones for detailed inspection. 
@@ -44,6 +50,9 @@ This makes it more difficult to correct for errors in the autonomous control (es
    Similarly, a remote computer is sometimes used to perform the required sensor processing and control logic. This allows a more powerful computer to be used, but also presents limitations due to the required wireless communication link, with limited bandwidth, increased latency, and packet loss or even complete loss-of-link. It also somewhat complicates transportation and deployment of the complete system, increasing mission cost. As such, an on-board computer would be preferrable.
 
 In order to facilitate experiments for more advanced autonomous flight, the NHL Stenden Centre of Expertise in Computer Vision & Data Science has decided a couple of years ago to develop a flexible architecture for autonomous mini-UAVs using interchangeable commodity components: the Twirre architecture. Development started as a small in-house project mainly by internship students, but it has since scaled up to subsidised commercial proof-of-concept projects. During development it was also realised that the Twirre architecture is not limited to UAVs, but can also easily be adapted for other types of vehicles. Subsequently, a project for development of an autonomous model boat has also been started.
+
+
+![][vsep_50]
 
 
 # Architecture overview
@@ -83,6 +92,10 @@ Note that newer flight controllers also accept control signal types other than s
 
 * some initial ideas for a more advanced control software architecture will be given here at a later date, involving a mission state machine and separation between mission logic and position control
 
+
+![][vsep_50]
+
+
 # Software components
 Several software components have been created for use with the Twirre architecture:
 
@@ -93,34 +106,37 @@ Several software components have been created for use with the Twirre architectu
 
 This page will only give a short summary for these components. Please check the corresponding repositories for more detailed information.
 
-### TwirreLink
+## TwirreLink
 The TwirreLink library provides a generic sensor / actuator communication API. It is considered to be the core of the Twirre architecture. TwirreLink also contains TwirreSerial, a protocol for communication over serial links, which is used to add sensors and actuators connected to an Arduino DUE to TwirreLink. The library is (mostly) thread-safe, and has a built-in asynchronous logging system.
 
 Repository: <https://github.com/NHLStenden-CVDS/TwirreLink>{:target="_blank"}
 
-### TwirreArduino
+## TwirreArduino
 TwirreArduino is an Arduino sketch compatible with the Arduino DUE. It provides communication with several sensors and actuators, and is compatible with the TwirreSerial protocol allowing these devices to be used on the host computer through TwirreLink.
 
 Repository: <https://github.com/NHLStenden-CVDS/TwirreArduino>{:target="_blank"} 
 
-### TwirreLogReader
+## TwirreLogReader
 A quick-and-dirty Python file for parsing TwirreLink logs.
 
 Repository: <https://github.com/NHLStenden-CVDS/TwirreLogreader>{:target="_blank"}
 
-### Additional sensor / actuator libraries
+## Additional sensor / actuator libraries
 Some additional TwirreLink-compatible libraries have been written for communication with specific sensors. These are currently bundled in a single repository.
 
 Repository: <https://github.com/NHLStenden-CVDS/TwirreLinkAddons>{:target="_blank"}
+ 
+ 
+ ![][vsep_50]
  
 
 # Hardware components
 
 * [UAV test platform hardware info](#uav-test-platform-hardware-info)
-* [twirreshield](#twirreshield)
+* [TwirreShield](#twirreshield)
 * [custom parts for F550 frame](#custom-parts-for-f550-frame)
 
-### UAV test platform hardware info
+## UAV test platform hardware info
 
 The current Twirre testing platform consists of the following hardware:
 
@@ -128,7 +144,7 @@ The current Twirre testing platform consists of the following hardware:
 The drone frame has been built using a [DJI Flame Wheel F550 ARF kit][platform_F550]{:target="_blank"}. This is an hexacopter frame offering enough room for the additional equipment needed for autonomous flight. The frame has been equipped with a [DJI E310 propulsion system][platform_E310]{:target="_blank"}, which offers improved performance and efficiency over the propulsion system which came standard with the F550 kit. This combination can provide around 4.8kg of thrust. The manufacturer recommends a maximum takeoff weight of 2.4kg, to allow sufficient thrust to be used for manoeuvring.
 
 #### 3D-printed parts
-Some parts have been printed using a 3D-printer. This includes an extension for the F550 frame landing legs, and a battery holder. 
+Some parts have been printed using a 3D-printer. This includes an extension for the F550 frame landing legs, and a battery holder. See the [corresponding section](#custom-parts-for-f550-frame) for more information.
 
 #### Flight controller
 The Twirre UAV uses a [DJI NAZA M v2][platform_NAZA]{:target="_blank"} flight controller. This flight controller is suitable for several different engine setups, including the "Hex V" setup of the F550 kit. The NAZA M v2 supports tradional PWM inputs, as well as S-BUS and PPM inputs. In this case, the traditional PWM inputs have been used, as this makes control signal generation using the Arduino DUE a bit easier. The flight controller also supports a GPS module, which enables a GPS-stabilised flight mode when flying outside, preventing the drone from drifting away due to wind.
@@ -168,36 +184,49 @@ The Twirre test platform is equipped with several sensors (which are not always 
 * [myAHRS+][platform_ahrs]{:target="_blank"} - an IMU/AHRS which provides attitude and heading data. Can be connected either to the FAST-I2C bus on TwirreShield, or directly to the host computer using USB.
 * [RPLidar A1][platform_lidar]{:target="_blank"} - a 2D lidar system for detecting walls, objects and obstacles. Connected to the host computer using USB.
 * [IDS UI-1221LE-M-GL][platform_idsof]{:target="_blank"} - low-resolution monochrome industrial board-level camera. Mounted facing down with a suitable 8mm m12 lens, and used for optical flow for positioning purposes (sadly, optical flow could not be implemented reliably as of yet).
-* [IDS UI-1241LE-C-HQ][platform_idscolour]{:target="_blank"} - RGB industrial board level camera. Two are mounted on the Twirre drone: one facing forward for object-of-interest detection, and one facing down for detection of landing site.
+* [IDS UI-1241LE-C-HQ][platform_idscolour]{:target="_blank"} - RGB industrial board-level camera. Two are mounted on the Twirre drone: one facing forward for object-of-interest detection, and one facing down for detection of landing site.
 
+![][vsep_10]
 
-### TwirreShield
+## TwirreShield
 Design for a sensor/actuator interface shield for the Arduino DUE.
 
-Repository: <https://github.com/NHLStenden-CVDS/TwirreShield>
+Repository: <https://github.com/NHLStenden-CVDS/TwirreShield>{:target="_blank"}
 
 
-### Custom parts for F550 frame
+## Custom parts for F550 frame
 Some custom parts for the F550 frame have been created, and printed out using a 3D printer.
 
-TBA: 3D models for various parts
+Repository: <https://github.com/NHLStenden-CVDS/Twirre3DModels>{:target="_blank"}
+
+
+![][vsep_50]
+
 
 # Licensing
 MIT license applies to all Twirre software and hardware schematics
 
+
+![][vsep_50]
+
+
 # Demo pictures and videos
 
-### Pointerdemo
+## Pointerdemo
 <p align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/gK4VH7v_jYc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></p>
 
-(July 2017) A demonstration application which was used to prove the Twirre v2 architecture software and demonstrate full autonomous flight. The drone will try to fly at a fixed distance from a 'pointer', which is a stick fitted with two different-sized coloured spheres. The spheres allow the drone to calculate a full position solution. 
+**(July 2017)** A demonstration application which was used to prove the Twirre v2 architecture software and demonstrate full autonomous flight. The drone will try to fly at a fixed distance from a 'pointer', which is a stick fitted with two different-sized coloured spheres. The spheres allow the drone to calculate a full position solution. 
 
-### Windmill blade approach
+## Windmill blade approach
 <p align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/dHwQGHlhG78" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></p>
 
-(January 2018) A demo of autonomous windmill blade inspection. The demo is performed indoors (as development is currently more practical there), using a black wooden model of a windmill blade. The drone will search for the blade by slowly rotating, and will then approach the blade and keep flying at a fixed distance. After a certain amount of time the drone switches to landing. Throttle, pitch, and yaw are controlled autonomously, but roll is controlled manually, as the vision processing does not give enough information about sideways position relative to the blade. 
+**(January 2018)** A demo of autonomous windmill blade inspection. The demo is performed indoors (as development is currently more practical there), using a black wooden model of a windmill blade. The drone will search for the blade by slowly rotating, and will then approach the blade and keep flying at a fixed distance. After a certain amount of time the drone switches to landing. Throttle, pitch, and yaw are controlled autonomously, but roll is controlled manually, as the vision processing does not give enough information about sideways position relative to the blade. 
 
 **More TBA**
+
+
+![][vsep_50]
+
 
 # About us
 
@@ -206,7 +235,8 @@ MIT license applies to all Twirre software and hardware schematics
 TBA: Some more info about the NHL Stenden University of Applied Sciences - Centre of Expertise in Computer Vision & Data Science
 
 
-
+[vsep_10]: images/misc/vsep_10.png
+[vsep_50]: images/misc/vsep_50.png
 
 [nhlstenden_cvds_logo]: images/index/nhlstenden_cvds.png
 [twirre_header]: images/index/twirre_header.jpg
