@@ -1,0 +1,14 @@
+\begin {longtable}{@{}ll>{\hsize =\vhAuthorColWidth }X>{\hsize =\vhChangeColWidth }X@{}}
+\textbf {\vhversionname }
+ & \textbf {\vhdatename }
+ & \textbf {\vhauthorname }
+ & \textbf {\vhchangename }\\[1ex]
+1.0
+ & 2014-11
+ & \listset {MJB, JdB, MRD, JP}
+ & Created.\\
+1.1
+ & 2018-06-20
+ & \listset {MRD}
+ & Update for release. Array number of elements field size changed to four bytes (from two).\\
+\end {longtable}

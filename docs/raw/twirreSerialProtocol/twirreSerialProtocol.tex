@@ -1,0 +1,230 @@
+\def \MYTITLE{General communication protocol for sensors and actuators}
+\def \MYDATE{November 2014}
+\def \MYAUTHOR{Miquel Junyent Barbany, Jasper de Boer, Martin Dijkstra, Jorn Postma}
+
+\documentclass[11pt,a4paper,oneside]{book}
+
+\usepackage{listings, graphicx}
+\usepackage{vhistory}
+
+\title{\MYTITLE}
+\author{\MYAUTHOR}
+
+\begin{document}
+
+\frontmatter
+
+\maketitle
+
+\mainmatter
+
+
+\begin{versionhistory}
+	\vhEntry{1.0}{2014-11}{MJB, JdB, MRD, JP}{Created.}
+	\vhEntry{1.1}{2018-06-20}{MRD}{Update for release. Array number of elements field size changed to four bytes (from two).}
+\end{versionhistory}
+
+
+\chapter{Introduction}
+
+In the Twirre architecture there is the mainboard, which does all the processing, and the Arduino, which gets the data from all sensors and controls the drone. In order to be able to add more sensors easily, it has been decided to refactor the current code to make it more extendable and generic. The communication protocol between the mainboard and the Arduino will be changed as well. Thus, the goal of this document is to describe a generic communication protocol for sensor and control data. It will be specified as well, a guideline for the implementation of this protocol in both the mainboard and the Arduino.
+
+Now, if a new sensor is added to the UAV, the code from both the Arduino and the mainboard has to be extended, as well as the protocol, adding a new type of message. The approach described in this document improves it by providing a general way of communication which results to no more protocol extension. The code of the mainboard should also be general and will not have to be extended for every new sensor.
+
+In order to generalize it even more, a new concept is introduced: the actuators. In a robot, we can find sensors and actuators, which in our case a sensor can be the ultrasonic sensor, and an actuator the motors (drone control function). Thus, the Arduino will tell the mainboard which sensors and actuators does it have, and which variables do they return or need. For instance, for the sonar a variable can be the distance, and for the drone control it can be roll input. This way, it is possible to ask for the variable distance or change the variable roll (later called to sense and to actuate).
+
+This document consists of four Chapters. It starts with the specification of the communication protocol in Chapter 2, which leads to the specific implementation on both sides of the communication for the UAV project, the mainboard and the Arduino, in Chapter 3 and 4. Lastly, in Chapter 5 a couple of points regarding to the future work are presented.
+
+
+\chapter{Communication protocol}
+
+In this Chapter, the communication protocol for sensors and actuators is described. This protocol consists of a master and slave construction. In our case we use this for the communication between the Arduino (slave) and the mainboard (master). The master sends a message with an operation code to the slave, and the slave responds to that request. There are four types of operation codes resulting in four types of request messages and another four response messages. The possible request operation codes are listed below:
+
+\begin{enumerate}
+\item Information
+\item Ping
+\item Actuate
+\item Sense
+\end{enumerate}
+
+The slave will respond with one of the following operation codes:
+\begin{enumerate}
+\item OK
+\item Ping
+\item Error
+\end{enumerate}
+
+The message after this operation code depends on the request operation code and will be specified in the following sections. All operation codes will be sent as one byte, that will be the first letter, capitalized (e.g. 'P' stands for Ping).
+
+At any time, the slave can send an error message. This is the operation code 'E' followed by a null terminated string describing the error.
+
+\section{Sensor and actuator's information}
+
+First of all, the mainboard has to know which actuators and sensors are attached to the Arduino. An information request,\textbf{ a two-bytes message with the characters "IA" or "IS"}, will be sent. If an error occurs, the Arduino will respond with an error message. Otherwise, it will respond with a null terminated string listing the actuators or the sensors (depending on the second byte, 'A' or 'S' respectively). This can be asked at any time, but it is recommended to use it during initialization, because the slave will return a big message, which can slow any process. Both strings, for actuators and sensors, will have the same format. They consist of information for each actuator or sensor. They will specify the name, a short description and the possible variables. This string will have the following structure:
+
+\begin{verbatim}
+<name[unique]>|<description>|<variables>
+\end{verbatim}
+
+\textbf{Important:} It is not possible to have the symbol $|$ in the description.\\
+
+\textbf{The different sensors or actuators are semicolon separated}. The variables will consist of a name and a type, as follows:
+
+\begin{verbatim}
+<variable name>=<type>
+\end{verbatim}
+
+\textbf{The variables are comma separated}. The different types can be found in table \ref{tab:types}. An example of a string returned by the slave (the Arduino in our case) can be, for two sensors named Sonar and DHT22:
+
+\begin{verbatim}
+Sonar|SRF-08-sonar sensor. Returns the distance to the closest
+object.|distance=UI32;DHT22|Temperature and humidity sensor|
+temp=I64,hum=I32
+\end{verbatim}
+
+\begin{table}
+\label{tab:types}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline 
+\textbf{Typestring} & \textbf{Type c++} & \textbf{ Type description} \\ 
+\hline 
+I8 & int8\_t & 8 bit signed integer \\ 
+\hline 
+UI8 & uint8\_t & 8 bit unsigned integer \\ 
+\hline 
+I16 & int16\_t & 16 bit signed integer \\ 
+\hline 
+UI16 & uint16\_t & 16 bit unsigned integer \\ 
+\hline 
+I32 & int32\_t & 32 bit signed integer \\ 
+\hline 
+UI32 & uint32\_t & 32 bit unsigned integer \\ 
+\hline 
+I64 & int64\_t & 64 bit signed integer \\ 
+\hline 
+UI64 & uint64\_t & 64 bit unsigned integer \\ 
+\hline 
+F & float & 32 bit floating point \\ 
+\hline 
+D & double & 64 bit floating point \\ 
+\hline 
+A & [] & Array. \\ 
+\hline 
+\end{tabular} 
+\caption{Type table}
+\end{table}
+
+For arrays, the number of elements has to be specified. Any type from Table \ref{tab:types} can be used except from the array itself. $<$type$>$, then, will have the following format:
+
+\begin{verbatim}
+A:<type of elements>
+\end{verbatim}
+
+When sending an array, the number of elements will be sent as a \textbf{four byte unsigned integer at the beginning of the array values}.
+
+\section{Ping}
+In order to know if the Arduino is still connected, or for testing purposes, it is possible to do a ping.
+The master will send a\textbf{ one byte message with the character 'P'} which the Arduino will send back.
+
+\section{Actuate}
+To control the actuators of the slave (for instance, the motors), an Actuate message will be sent. It is structured this way:
+
+\begin{figure}[h]
+\centering
+\label{fig:ActuateRequest}
+\begin{tabular}{|c|c|c|c|}
+\hline 
+A & $<$targetID$>$ & $<$payload size$>$ & $<$payload$>$ \\ 
+\hline 
+\end{tabular} 
+\caption{Actuate message}
+\end{figure}
+
+The payload will be:
+
+\begin{figure}[h]
+\centering
+\label{fig:ActuatePayload}
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+$<$variableID$>$ & $<$value$>$ & $<$variable ID$>$ & $<$value$>$ & ... \\
+\hline
+\end{tabular} 
+\caption{Actuate payload}
+\end{figure}
+
+\begin{itemize}
+
+\item The operation code is Actuate, which means that the \textbf{first byte} of the message will be the\textbf{ character 'A'}.
+
+\item $<$targetID$>$ is a one byte identifier which corresponds to the nth actuator specified in the information string (0 - 255). Thus, the ID of an actuator depends on its position in the initialization string, starting by 0.
+
+\item $<$payload size$>$ Two-byte integer that tells the size in bytes of the following payload.
+
+\item $<$variable ID$>$ is a one byte identifier which corresponds to the nth variable specified in the information string (0 - 255). It is followed by the value for that variable, which size is determined by its type in the initialization string.
+
+\end{itemize}
+
+\textbf{The slave will respond with the OK operation code 'O' unless an error occurred.}
+
+\section{Sense}
+
+The master can ask for data from the sensors connected to the slave. It will use the same message structure as for the actuators, with a slightly different payload. The request is as follows:
+
+\begin{figure}[h]
+\centering
+\label{fig:SenseRequest}
+\begin{tabular}{|c|c|c|c|}
+\hline 
+S & $<$targetID$>$ & $<$payload size$>$ & $<$payload$>$ \\ 
+\hline 
+\end{tabular} 
+\caption{Sense message}
+\end{figure}
+
+The payload will be:
+
+\begin{figure}[h]
+\centering
+\label{fig:SensePayload}
+\begin{tabular}{|c|c|c|}
+\hline 
+$<$variable ID$>$ & $<$variable ID$>$ & ... \\ 
+\hline
+\end{tabular} 
+\caption{Sense payload}
+\end{figure}
+
+\begin{itemize}
+
+\item The operation code is Sense, which means that the \textbf{first byte} of the buffer will be the\textbf{ character 'S'}.
+
+\item $<$targetID$>$ is a one byte identifier which corresponds to the nth actuator specified in the information string (0 - 255).
+
+\item $<$payload size$>$ Two-byte integer that tells the size in bytes of the following payload. Note that this time the payload size is the number of variable ID's given.
+
+\item $<$variable ID$>$ is a one byte identifier which corresponds to the nth variable specified in the information string (0 - 255).
+
+\end{itemize}
+
+\textbf{The slave responds with the operation code 'O' followed by a buffer with the values of the variables asked, in the same order that they were asked. No size or value count will be given, the size in bytes of the payload must be inferred from the previously known size of the requested variables.}
+
+\textbf{In case of an error (such as invalid variable ID specified) the slave will respond with operation code 'E' instead, signalling an error. The operation code will then be followed by a null-terminated string.}
+
+\chapter{Work for the future}
+
+Some points regarding to the future work are listed below:
+
+\begin{itemize}
+\item Add another operation code which is Configure, to be able to set up variables of the sensors. Those variables and their possible values should be given in the initialization string. Like the actuators?
+
+\item Use escaping characters to be able to use the character | in the description of the sensors or the actuators. It would be nice to make that transparent so it adds and removes automatically the escaping character from the string if necessary. It has to be taken into account that the escaping character becomes a special character as well and therefore has to be able to be escaped.
+
+\item Use request numbers in the messages so they can be sent without any order.
+
+\item Add functionality to send null terminated strings as another type.
+
+\end{itemize}
+
+\end{document}
