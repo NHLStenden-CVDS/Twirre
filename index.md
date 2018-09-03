@@ -4,7 +4,7 @@
 ![Organisation logo][nhlstenden_cvds_logo]
 
 # Notice
-This page is currently being developed. Expect changes and additional information in the coming weeks. **All text must be considered to be concept text only.**
+The work on Twirre is an ongoing research project. Your feedback and contributions are welcome!
 
 ![Twirre test platform, 2017][twirre_header]
 
@@ -204,7 +204,9 @@ Repository: <https://github.com/NHLStenden-CVDS/Twirre3DModels>{:target="_blank"
 
 
 # Licensing
-MIT license applies to all Twirre software and hardware schematics
+MIT license applies to all Twirre software and hardware schematics. See individual projects for license details.
+
+[MIT license example from the TwirreLink project][license_twirrelink]{:target="_blank"}
 
 
 ![][vsep_50]
@@ -222,8 +224,6 @@ MIT license applies to all Twirre software and hardware schematics
 
 **(January 2018)** A demo of autonomous windmill blade inspection. The demo is performed indoors (as development is currently more practical there), using a black wooden model of a windmill blade. The drone will search for the blade by slowly rotating, and will then approach the blade and keep flying at a fixed distance. After a certain amount of time the drone switches to landing. Throttle, pitch, and yaw are controlled autonomously, but roll is controlled manually, as the vision processing does not give enough information about sideways position relative to the blade. 
 
-**More TBA**
-
 
 ![][vsep_50]
 
@@ -231,9 +231,6 @@ MIT license applies to all Twirre software and hardware schematics
 # About us
 
 <http://www.nhlcomputervision.nl/>{:target="_blank"}
-
-TBA: Some more info about the NHL Stenden University of Applied Sciences - Centre of Expertise in Computer Vision & Data Science
-
 
 [vsep_10]: images/misc/vsep_10.png
 [vsep_50]: images/misc/vsep_50.png
@@ -244,7 +241,7 @@ TBA: Some more info about the NHL Stenden University of Applied Sciences - Centr
 [twirre_archdiagram_base]: images/index/twirre_diagram_base.png
 [twirre_archdiagram]: images/index/twirre_diagram.png
 
-
+[license_twirrelink]: https://github.com/NHLStenden-CVDS/TwirreLink/blob/master/LICENSE
 
 [nhlstenden-site]: https://www.nhlstenden.com/en
 [cvds-official-site]: https://onderzoek.nhl.nl/en/lectorships/computer-vision
