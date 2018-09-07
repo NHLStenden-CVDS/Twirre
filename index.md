@@ -224,6 +224,11 @@ MIT license applies to all Twirre software and hardware schematics. See individu
 
 **(January 2018)** A demo of autonomous windmill blade inspection. The demo is performed indoors (as development is currently more practical there), using a black wooden model of a windmill blade. The drone will search for the blade by slowly rotating, and will then approach the blade and keep flying at a fixed distance. After a certain amount of time the drone switches to landing. Throttle, pitch, and yaw are controlled autonomously, but roll is controlled manually, as the vision processing does not give enough information about sideways position relative to the blade. 
 
+## Windmill blade scan
+<p align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/8jpnsVNclmo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></p>
+
+**(May 2018)** Another demo of autonomous windmill blade inspection, performed indoors. First tests of the 'scan' phase of autonomous windmill blade inspection, using a LiDAR (RPLidar A1, see Sensors(#sensors)). As a 2D lidar gives issues with pitch/roll of the aircraft, the model windmill blade was found unsuitable for these experiments because the LiDAR misses it frequently. An improvised simulated target using tables is used for experiments instead. The UAV operates in full autonomous mode, except for takeoff and landing which are always performed manually.
+
 
 ![][vsep_50]
 
