@@ -179,12 +179,39 @@ An [Arduino DUE][platform_due]{:target="_blank"} is used. This microcontroller p
 #### Sensors
 The Twirre test platform is equipped with several sensors (which are not always present on the system at all times, sensor setup is flexible depending on requirements):
 
-* [SRF08 ultrasonic range finder][platform_sonar]{:target="_blank"} - a sonar module which is pointed downwards to accurately determine the altitude of the drone. Connected to the 5V-I2C bus on TwirreShield.
-* [LIDAR-Lite v2][platform_lidarlite]{:target="_blank"} - a 1D point lidar which can be used as alternative to the sonar for measuring altitude. Works at much greater distances. Narrow beam means more work is needed to compensate for pitch/roll orientation of the drone. 
-* [myAHRS+][platform_ahrs]{:target="_blank"} - an IMU/AHRS which provides attitude and heading data. Can be connected either to the FAST-I2C bus on TwirreShield, or directly to the host computer using USB.
-* [RPLidar A1][platform_lidar]{:target="_blank"} - a 2D lidar system for detecting walls, objects and obstacles. Connected to the host computer using USB.
-* [IDS UI-1221LE-M-GL][platform_idsof]{:target="_blank"} - low-resolution monochrome industrial board-level camera. Mounted facing down with a suitable 8mm m12 lens, and used for optical flow for positioning purposes (sadly, optical flow could not be implemented reliably as of yet).
-* [IDS UI-1241LE-C-HQ][platform_idscolour]{:target="_blank"} - RGB industrial board-level camera. Two are mounted on the Twirre drone: one facing forward for object-of-interest detection, and one facing down for detection of landing site.
+* [SRF08 ultrasonic range finder][platform_sonar]{:target="_blank"} 
+
+![srf08 picture][img_srf08]
+a sonar module which is pointed downwards to accurately determine the altitude of the drone. Connected to the 5V-I2C bus on TwirreShield.
+
+![][vsep_10]
+
+* [LIDAR-Lite v2][platform_lidarlite]{:target="_blank"}
+
+![lidarlite picture][img_lidarlite]
+a 1D point lidar which can be used as alternative to the sonar for measuring altitude. Works at much greater distances. Narrow beam means more work is needed to compensate for pitch/roll orientation of the drone. 
+
+![][vsep_10]
+
+* [myAHRS+][platform_ahrs]{:target="_blank"}
+
+![myAHRS picture][img_myahrs+]
+an IMU/AHRS which provides attitude and heading data. Can be connected either to the FAST-I2C bus on TwirreShield, or directly to the host computer using USB.
+
+![][vsep_10]
+
+* [RPLidar A1][platform_lidar]{:target="_blank"}
+
+![rplidar picture][img_rplidar]
+a 2D lidar system for detecting walls, objects and obstacles. Connected to the host computer using USB.
+
+![][vsep_10]
+
+* [IDS UI-1221LE-M-GL][platform_idsof]{:target="_blank"} and [IDS UI-1241LE-C-HQ][platform_idscolour]{:target="_blank"}
+
+![IDS camera picture][img_idscam]
+UI-1221LE-M-GL:  low-resolution monochrome industrial board-level camera. Mounted facing down with a suitable 8mm m12 lens, and used for optical flow for positioning purposes (sadly, optical flow could not be implemented reliably as of yet).
+UI-1241LE-C-HQ:  RGB industrial board-level camera. Two are mounted on the Twirre drone: one facing forward for object-of-interest detection, and one facing down for detection of landing site.
 
 ![][vsep_10]
 
@@ -245,6 +272,12 @@ MIT license applies to all Twirre software and hardware schematics. See individu
 
 [twirre_archdiagram_base]: images/index/twirre_diagram_base.png
 [twirre_archdiagram]: images/index/twirre_diagram.png
+
+[img_srf08]: images/sensors/srf08.png
+[img_myahrs+]: images/sensors/myahrs.png
+[img_lidarlite]: images/sensors/lidarlite.png
+[img_rplidar]: images/sensors/rplidar.png
+[img_idscam]: images/sensors/idscam.png
 
 [license_twirrelink]: https://github.com/NHLStenden-CVDS/TwirreLink/blob/master/LICENSE
 
